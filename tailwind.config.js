@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'embeded-code' : ["Handjet", 'sans-serif'],
+        'Shadow-code' : ["Jacques Francois Shadow", 'serif']
+      },
+    },
   },
   plugins: [],
 }
