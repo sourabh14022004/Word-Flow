@@ -8,7 +8,9 @@ export default {
     extend: {
       fontFamily: {
         'embeded-code' : ["Handjet", 'sans-serif'],
-        'Shadow-code' : ["Jacques Francois Shadow", 'serif']
+        'Shadow-code' : ["Jacques Francois Shadow", 'serif'],
+        'Baskerville-regular': ["Libre Baskerville", 'serif'],
+        'Playfair': ["Playfair Display", 'serif']
       },
     },
   },

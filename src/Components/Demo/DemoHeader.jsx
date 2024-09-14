@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import worlFlow from '../../assets/x.png'
 import { nav } from '../../Firebase/Data';
+import Auth from './Auth/Auth.jsx';
 // import sticker from '../../assets/sticker.png'
 
 const DemoHeader = () => {
@@ -39,10 +40,15 @@ const DemoHeader = () => {
                         <Link key={i} to={link.path}>{link.title}</Link>
                     ))}
                 </div>
-                <div className=' relative flex gap-5'>
-                    <button className=" capitalize hidden text-base md:flex items-center">sign in</button>
-                    <button className={`capitalize ${isActive ? "bg-green-800" : "bg-black"} transition-all duration-800 text-white p-2 px-3 rounded-full font-medium `}>get started</button>
+                <div className=' relative '>
+                    <button className=" capitalize hidden text-base sm:flex items-center">
+                        sign in
+                    </button>
+                    <Auth/>
                 </div>
+                <button className={`capitalize ${isActive ? "bg-green-800" : "bg-black"} transition-all duration-800 text-white p-2 px-3 rounded-full font-medium `}>
+                    get started
+                </button>
             </div>
         </div>
     </header>
