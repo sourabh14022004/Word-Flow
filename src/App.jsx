@@ -9,7 +9,7 @@ import { Blog } from './Context/Context.jsx';
 
 
 function App() {
-  const {currentUser} = Blog;
+  const { currentUser } = Blog();
   return (
     <>
       {currentUser ? <HomeHeader/> : <DemoHeader/>}

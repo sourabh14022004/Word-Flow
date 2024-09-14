@@ -9,7 +9,9 @@ import Context from './Context/Context.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <App/>
+      <Context>
+        <App/>
+      </Context>
     </BrowserRouter>
   </StrictMode>
 );
