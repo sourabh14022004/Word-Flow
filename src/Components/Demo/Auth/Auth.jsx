@@ -23,11 +23,12 @@ const Auth = ({model, setModel}) => {
                         bottom-0 lg:bottom-[3.125rem]  left-0 md:left-[10rem] overflow-auto 
                         right-0 md:right-[10rem] bg-white shadows rounded-lg 
                         ${model ? "visible opacity-100" : "invisible opacity-0"}
-                        transition-all duration-400`}>
+                        transition-all duration-500
+                        `}>
 
             <button 
                 onClick={() => setModel(false)}
-                className={`absolute top-8 right-8 text-2xl hover:opacity-50 `}>
+                className={`absolute top-8 right-8 text-2xl hover:opacity-50`}>
                 <LiaTimesSolid/>
             </button>
 

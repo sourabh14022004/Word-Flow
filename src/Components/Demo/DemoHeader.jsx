@@ -7,7 +7,7 @@ import Auth from './Auth/Auth.jsx';
 
 const DemoHeader = () => {
     const [isActive, setIsActive] = useState(false);
-    const [model, setModel]= useState(true);
+    const [model, setModel]= useState(false);
 
     useEffect (() => {
         const scrollMe = () => {
