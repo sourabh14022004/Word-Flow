@@ -1,6 +1,9 @@
 import React from 'react'
 import Banner from './Auth/Banner.jsx';
 import Trending from './Trending.jsx';
+import Posts from '../Common/Posts/Posts.jsx';
+import Discover from './Discover.jsx';
+
 
 
 const Demo = () => {
@@ -8,6 +11,14 @@ const Demo = () => {
     <>
         <Banner/>
         <Trending/>
+        <div className=' size py-7 flex flex-col-reverse md:flex-row gap-[7rem]'>
+          <div className=' flex-[1.5]'>
+            <Posts/>
+          </div>
+          <div className=' flex-[1] relative'>
+            <Discover/>
+          </div>
+        </div>
     </>
   )
 }
