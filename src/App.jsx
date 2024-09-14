@@ -4,11 +4,12 @@ import Home from './Components/Home/Home.jsx';
 import Demo from './Components/Demo/Demo.jsx';
 import HomeHeader from './Components/Home/HomeHeader.jsx';
 import DemoHeader from './Components/Demo/DemoHeader.jsx';
+import { Blog } from './Context/Context.jsx';
 
 
 
 function App() {
-  const currentUser = false;
+  const {currentUser} = Blog;
   return (
     <>
       {currentUser ? <HomeHeader/> : <DemoHeader/>}
