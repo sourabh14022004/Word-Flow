@@ -10,10 +10,9 @@ import { CiMail } from "react-icons/ci";
 import SignIn from './SignIn.jsx';
 import SignUp from './SignUp.jsx';
 
-const Auth = () => {
+const Auth = ({model, setModel}) => {
     const [createUser, setCreatUsera] = useState(false);
     const [signReq, setSignReq] = useState("");
-    const [model, setModel]= useState(true);
     const hidden = model ? "visible opacity-100" : "invisible opacity-0";
 
 

@@ -7,6 +7,7 @@ import Auth from './Auth/Auth.jsx';
 
 const DemoHeader = () => {
     const [isActive, setIsActive] = useState(false);
+    const [model, setModel]= useState(true);
 
     useEffect (() => {
         const scrollMe = () => {
@@ -41,12 +42,16 @@ const DemoHeader = () => {
                     ))}
                 </div>
                 <div className=' relative '>
-                    <button className=" capitalize hidden text-base sm:flex items-center">
+                    <button 
+                        onClick={() => setModel(true)}
+                        className=" capitalize hidden text-base sm:flex items-center">
                         sign in
                     </button>
-                    <Auth/>
+                    <Auth model = {model} setModel={setModel}/>
                 </div>
-                <button className={`capitalize ${isActive ? "bg-green-800" : "bg-black"} transition-all duration-800 text-white p-2 px-3 rounded-full font-medium `}>
+                <button 
+                    onClick={() => setModel(true)}
+                    className={`capitalize ${isActive ? "bg-green-800" : "bg-black"} transition-all duration-800 text-white p-2 px-3 rounded-full font-medium `}>
                     get started
                 </button>
             </div>
