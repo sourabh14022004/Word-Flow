@@ -1,19 +1,55 @@
 import React, { useState } from 'react'
 import Model from '../../../Utils/Model.jsx';
 import { LiaTimesSolid } from "react-icons/lia"; 
-import { FaTimes } from "react-icons/fa";
+// import { FaTimes } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { MdFacebook } from "react-icons/md";
-import { IoMailOutline } from "react-icons/io5";
-import { FiMail } from "react-icons/fi";
+// import { IoMailOutline } from "react-icons/io5";
+// import { FiMail } from "react-icons/fi";
 import { CiMail } from "react-icons/ci";
 import SignIn from './SignIn.jsx';
 import SignUp from './SignUp.jsx';
+import { signInWithPopup } from 'firebase/auth';
+import { auth,  db,  provider } from '../../../Firebase/firebase.js'
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 
 const Auth = ({model, setModel}) => {
     const [createUser, setCreatUsera] = useState(false);
     const [signReq, setSignReq] = useState("");
-    const hidden = model ? "visible opacity-100" : "invisible opacity-0";
+    const navigate =  useNavigate();
+
+//  google auth function...
+
+    const googleAuth = async () => {
+        try {
+            const createUser = await signInWithPopup(auth, provider);
+            const newUser = createUser.user;
+
+
+            const ref = doc(db, "users", newUser.uid);
+            const userDoc = await getDoc(ref);
+
+            if(!userDoc.exists()) {
+                await setDoc(ref, {
+                    userId: newUser.displayName,
+                    username: newUser.displayName,
+                    email: newUser.email,
+                    userImg: newUser.photoURL,
+                    bio: "",
+
+                });
+                navigate("/");
+                toast.success("Users has been Signed in Successfully.");
+                setModel(false);
+            }
+        }
+        catch (error)  {
+            toast.error(error.message)
+        }
+    };
 
 
   return (
@@ -43,6 +79,7 @@ const Auth = ({model, setModel}) => {
                     
                         <div className=' flex flex-col gap-3 w-fit mx-auto pt-20 pb-4'>
                             <Button 
+                                click = {googleAuth}
                                 icon = {<FcGoogle className=' text-2xl'/>} 
                                 text = {`${createUser ? "Sign up" : "Sign in"} with Google`}/>
                             <Button 

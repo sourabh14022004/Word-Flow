@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import worlFlow from '../../assets/x.png'
-import { nav } from '../../Firebase/Data';
+import { nav } from '../../data.js';
 import Auth from './Auth/Auth.jsx';
 // import sticker from '../../assets/sticker.png'
 

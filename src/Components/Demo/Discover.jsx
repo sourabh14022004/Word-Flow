@@ -1,5 +1,5 @@
 import React from 'react'
-import { discover, discoverActions } from '../../../Data';
+import { discover, discoverActions } from '../../data';
 
 const Discover = () => {
   return (
