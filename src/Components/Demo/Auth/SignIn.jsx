@@ -26,6 +26,7 @@ const SignIn = ({ setSignReq }) => {
             setLoading(true);
             await signInWithEmailAndPassword(auth, form.email, form.password);
             navigate("/")
+            setLoading(false);
             toast.success("You have Successfully logged in")
 
         }catch (error){

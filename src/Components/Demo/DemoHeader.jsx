@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import worlFlow from '../../assets/x.png'
 import { nav } from '../../data.js';
 import Auth from './Auth/Auth.jsx';
+import wordflow from '../../assets/word-flow-crop.png';
 // import sticker from '../../assets/sticker.png'
 
 const DemoHeader = () => {
@@ -23,8 +23,8 @@ const DemoHeader = () => {
                 <div>
                     <Link to={"/"} >
                         <img 
-                            className=' h-[4rem] rounded-full'
-                            src={worlFlow}
+                            className=' h-[3rem] rounded-full'
+                            src={wordflow}
                             alt='logo is fetching please wait...'
                         /> 
                     </Link>

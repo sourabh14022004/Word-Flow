@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Home from './Components/Home/Home.jsx';
 import Demo from './Components/Demo/Demo.jsx';
-import HomeHeader from './Components/Home/HomeHeader.jsx';
+import HomeHeader from './Components/Home/Header/HomeHeader.jsx';
 import DemoHeader from './Components/Demo/DemoHeader.jsx';
 import { Blog } from './Context/Context.jsx';
 import { ToastContainer } from 'react-toastify';
