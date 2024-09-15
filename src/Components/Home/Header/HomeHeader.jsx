@@ -2,16 +2,21 @@ import React, { useState } from 'react'
 import { IoNotificationsOutline } from "react-icons/io5";
 import { FaRegEdit } from "react-icons/fa";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import { BsSearch } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 import wordflow from '../../../assets/word-flow-crop.png';
 import Search from './Search';
 import profile from "../../../assets/profile.jpg";
 import Model from '../../../Utils/Model.jsx';
 import UserModel from './UserModel.jsx';
+import { BsSearch } from "react-icons/bs";
+
+
+
+
 
 const HomeHeader = () => {
   const [model, setModel] = useState(false);
+  const [searchModel, setSearchModel] = useState(false);
   return (
     <header className=' border-b border-gray-200'>
       <div className=' size h-[60px] flex items-center justify-between'>
@@ -26,10 +31,18 @@ const HomeHeader = () => {
               />
             </span>
           </Link>
-          <Search/>
+          <Search model={searchModel} setModel={searchModel}/>
         </div>
+
+
+
         {/* Right side */}
           <div className=' flex items-center gap-3 sm:gap-7'>
+            <span 
+                onClick={() => setSearchModel(true)}
+                className=' flex sm:hidden text-2xl text-gray-300 cursor-pointer'>
+                <BsSearch/>
+            </span>
             <Link 
                 to={"/write"} 
                 className=' hidden md:flex items-center gap-1 text-gray-500'>
