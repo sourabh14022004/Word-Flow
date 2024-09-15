@@ -102,9 +102,9 @@ const Auth = ({model, setModel}) => {
                     </>
 
                 ) : signReq === "sign-in" ? ( 
-                    <SignIn setSignReq ={setSignReq}/>
+                    <SignIn setModel={setModel}  setSignReq ={setSignReq}/>
                 ) : signReq === "sign-up" ? (
-                    <SignUp setSignReq ={setSignReq}/>
+                    <SignUp setModel={setModel} setSignReq ={setSignReq}/>
                 ) : null}
 
                     <div className=' flext flex-col items-center text-center justify-center text-[12px] pt-[25px]'>
