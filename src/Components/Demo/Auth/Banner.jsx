@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import sticker from '../../../assets/sticker.png'
 import sticker1 from '../../../assets/xyz.png'
 
 const Banner = () => {
+  const [model, setModel] = useState()
   return (
     <>
       <div className='relative bg-white border-black border-b md:flex items-center justify-between h-[42.5rem]'>

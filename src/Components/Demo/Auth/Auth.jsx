@@ -17,39 +17,36 @@ import { toast } from 'react-toastify';
 
 
 const Auth = ({model, setModel}) => {
-    const [createUser, setCreatUsera] = useState(false);
+    const [createUser, setCreateUser] = useState(false);
     const [signReq, setSignReq] = useState("");
     const navigate =  useNavigate();
 
 //  google auth function...
 
-    const googleAuth = async () => {
-        try {
-            const createUser = await signInWithPopup(auth, provider);
-            const newUser = createUser.user;
+const googleAuth = async () => {
+    try {
+      const createUser = await signInWithPopup(auth, provider);
+      const newUser = createUser.user;
 
+      const ref = doc(db, "users", newUser.uid);
+      const userDoc = await getDoc(ref);
 
-            const ref = doc(db, "users", newUser.uid);
-            const userDoc = await getDoc(ref);
-
-            if(!userDoc.exists()) {
-                await setDoc(ref, {
-                    userId: newUser.displayName,
-                    username: newUser.displayName,
-                    email: newUser.email,
-                    userImg: newUser.photoURL,
-                    bio: "",
-
-                });
-                navigate("/");
-                toast.success("Users has been Signed in Successfully.");
-                setModel(false);
-            }
-        }
-        catch (error)  {
-            toast.error(error.message)
-        }
-    };
+      if (!userDoc.exists()) {
+        await setDoc(ref, {
+          userId: newUser.uid,
+          username: newUser.displayName,
+          email: newUser.email,
+          userImg: newUser.photoURL,
+          bio: "",
+        });
+        navigate("/");
+        toast.success("User have been Signed in");
+        setModel(false);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
 
   return (
@@ -82,7 +79,8 @@ const Auth = ({model, setModel}) => {
                                 click = {googleAuth}
                                 icon = {<FcGoogle className=' text-2xl'/>} 
                                 text = {`${createUser ? "Sign up" : "Sign in"} with Google`}/>
-                            <Button 
+                            <Button
+                                click={() => console.log("Facebook auth not implemented yet")} // Auth not added
                                 icon = {<MdFacebook className=' text-2xl text-blue-600'/>} 
                                 text = {`${createUser ? "Sign up" : "Sign in"} with Facebook`}/>
                             <Button 
@@ -94,9 +92,10 @@ const Auth = ({model, setModel}) => {
                         <div className=' flex  items-center justify-center mb-9'>
                             <p>{createUser ? "Already have an account?" : "No Account?"}</p>
                             <button 
-                                onClick={() => setCreatUsera(!createUser)}
+                                // onClick={() => setCreateUser(!createUser)}
+                                onClick={() => setCreateUser(!createUser)} 
                                 className=' text-green-600 hover:text-green-800 poppins-semibold'>
-                                    {createUser ? "Sign in":"Creat one"}
+                                    {createUser ? "Sign in":"Create one"}
                             </button>
                         </div> 
                     </>

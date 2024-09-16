@@ -5,7 +5,7 @@ const Model = ({ children, model, setModel }) => {
         <>
             <div 
                 onClick={() => setModel(false)}
-                className={`bg-white/80 fixed inset-0 z-10 
+                className={`bg-white/70 fixed inset-0 z-10 
                 ${
                     model ? "visible opacity-100" : "invisible opacity-0"
                 }

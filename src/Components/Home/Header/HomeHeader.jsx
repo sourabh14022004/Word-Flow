@@ -9,16 +9,23 @@ import profile from "../../../assets/profile.jpg";
 import Model from '../../../Utils/Model.jsx';
 import UserModel from './UserModel.jsx';
 import { BsSearch } from "react-icons/bs";
+import { Blog } from '../../../Context/Context.jsx';
+import Loading from '../../Loading/Loading.jsx';
 
 
 
 
 
 const HomeHeader = () => {
+  const {allUsers, userLoading, currentUser} = Blog();
   const [model, setModel] = useState(false);
   const [searchModel, setSearchModel] = useState(false);
+
+  const getUserData = allUsers.find((user) => user.id === currentUser?.uid);
+
   return (
     <header className=' border-b border-gray-200'>
+      {userLoading && <Loading />}
       <div className=' size h-[60px] flex items-center justify-between'>
         {/* left side */}
         <div className=' flex items-center gap-3'>
@@ -54,19 +61,23 @@ const HomeHeader = () => {
                     Write
                 </span>
             </Link>
-            <span className=' text-3xl text-gray-500 cursor-pointer'><IoNotificationsOutline/></span>
+            <span className=' text-3xl text-gray-500 cursor-pointer'>
+              <IoNotificationsOutline/>
+              </span>
             <div className=' flex items-center relative'>
               <img 
                 onClick={() => setModel(true)}
                 className=' w-[2.3rem] h-[2.3rem] object-cover cursor-pointer rounded-full'
-                src = {profile} alt='profile-img'></img>
+                src = {getUserData?.userImg ? getUserData?.userImg : profile} 
+                alt='profile-img'>
+              </img>
                 <span 
                     className=' text-gray-500 cursor-pointer'>
                     <MdKeyboardArrowDown/>
                 </span>
                 <Model model={model} setModel={setModel}>
                   <div className={`${model ? "visible opacity-100%" : "invisible opacity-0"} transition-all duration-200 `}>
-                    <UserModel/>
+                    <UserModel setModel={setModel}/>
                   </div>
                 </Model>
             </div>
