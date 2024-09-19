@@ -80,7 +80,7 @@ const googleAuth = async () => {
                                 icon = {<FcGoogle className=' text-2xl'/>} 
                                 text = {`${createUser ? "Sign up" : "Sign in"} with Google`}/>
                             <Button
-                                click={() => toast.error("Facebook auth not implemented yet")}
+                                click={() => toast.error("Facebook auth not implemented yet")} // Auth in facebook not added
                                 icon = {<MdFacebook className=' text-2xl text-blue-600'/>} 
                                 text = {`${createUser ? "Sign up" : "Sign in"} with Facebook`}/>
                             <Button 
