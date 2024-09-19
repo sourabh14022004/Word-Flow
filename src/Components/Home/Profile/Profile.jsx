@@ -9,6 +9,7 @@ import { IoSettingsSharp } from "react-icons/io5";
 import EditProfile from './EditProfile.jsx';
 import { Blog } from '../../../Context/Context.jsx';
 import { useParams } from 'react-router-dom';
+import profileImg from '../../../assets/profile.jpg'
 
 
 
@@ -86,11 +87,12 @@ const Profile = () => {
             <IoExitOutline/>
           </button>
         </div>
-        {/* profile details */}
+        {/* profile details */} 
+        {/* src/assets/profile.jpg */}
         <div className="sticky top-7 flex flex-col justify-between">
           <img 
             className="w-[3.5rem] h-[3.5rem] object-cover rounded-full"
-            src={getUserData?.userImg || '/src/assets/profile.jpg'} alt='profile-img'></img>
+            src={getUserData?.userImg ||`${profileImg}`} alt='profile-img'></img>
           <h2 className="py-2 font-bold capitalize">{getUserData?.username}</h2>
           <p className="text-gray-500 first-letter:uppercase text-sm">{getUserData?.bio}</p>
           <button

@@ -11,6 +11,7 @@ const Context = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [userLoading, setUserLoading] = useState(true);
     const [allUsers, setAllUsers] = useState([])
+    const [publish, setPublish] = useState(false);
 
 
     useEffect(() => {
@@ -43,7 +44,7 @@ const Context = ({ children }) => {
     }, []);
 
     return ( 
-            <BlogContext.Provider value={{currentUser, setCurrentUser, allUsers, userLoading}}> 
+            <BlogContext.Provider value={{currentUser, setCurrentUser, allUsers, userLoading, publish, setPublish}}> 
                 {loading ? <Loading/> : children}
             </BlogContext.Provider>
         );

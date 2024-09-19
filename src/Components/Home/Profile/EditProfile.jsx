@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { db, storage } from '../../../Firebase/firebase';
 import { doc, updateDoc } from 'firebase/firestore';
+import profileImg from '../../../assets/profile.jpg'
 
 const EditProfile = ({editModal, setEditModal, getUserData}) => {
 
@@ -93,7 +94,7 @@ const EditProfile = ({editModal, setEditModal, getUserData}) => {
             <div className="flex gap-[2rem]">
               <div className="w-[5rem]">
                 <img className="min-h-[5rem] min-w-[5rem] object-cover border border-gray-400 rounded-full" 
-                  src={imgUrl ? imgUrl : form.userImg ? form.userImg : '/src/assets/profile.jpg'} 
+                  src={imgUrl ? imgUrl : form.userImg ? form.userImg : `${profileImg}`} 
                   alt='proflie-img'>
                 </img>
                 <input 
