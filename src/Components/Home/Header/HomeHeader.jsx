@@ -14,7 +14,7 @@ import Loading from '../../Loading/Loading.jsx';
 import { LiaEditSolid } from 'react-icons/lia';
 
 const HomeHeader = () => {
-  const [editPost, setEditpath] = useState(true);
+  // const [editPost, setEditpath] = useState(true);
   const { allUsers, userLoading, currentUser, setPublish, loading } = Blog();
   const [model, setModel] = useState(false);
   const [searchModel, setSearchModel] = useState(false);
@@ -50,30 +50,6 @@ const HomeHeader = () => {
             className=' flex sm:hidden text-2xl text-gray-300 cursor-pointer'>
             <BsSearch />
           </span>
-
-
-          {/* write section */}
-          {/* {pathname === "/write" ? ( 
-              <button 
-                onclick ={() => setPublish(true)} 
-                className='btn !bg-green-700 !py-1 !px-4 !text-white !rounded-full'>
-                Publish
-            </button>
-            ) : (
-              <Link 
-                  to={"/write"} 
-                  className=' hidden md:flex items-center gap-1 text-gray-500'>
-                  <span className=' text-3xl'>
-                    <FaRegEdit/>
-                  </span>
-                  <span 
-                      className=' text-[20px] mt-1'>
-                      Write
-                  </span>
-              </Link>
-            )
-            } */}
-
 
 
 {/* write section */}

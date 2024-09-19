@@ -40,21 +40,6 @@ const EditProfile = ({editModal, setEditModal, getUserData}) => {
     }
     setLoading(true);
     
-      // let imageUrl = form.userImg;
-    
-      // // If user uploads a new image
-      // if (form.userImg && form.userImg instanceof File) {
-      //   try {
-      //     const storageRef = ref(storage, `image/${form.userImg.name}`);
-      //     await uploadBytes(storageRef, form.userImg);
-      //     imageUrl = await getDownloadURL(storageRef);
-      //   } catch (error) {
-      //     toast.error("Failed to upload image");
-      //     setLoading(false);
-      //     return;
-      //   }
-      // }
-
     const storageRef = ref(storage, `image/${form.userImg.name}`);
     await uploadBytes(storageRef, form?.userImg);
 
