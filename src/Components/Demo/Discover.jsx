@@ -20,7 +20,7 @@ const Discover = () => {
             </button> 
             <div className=' flex items-center flex-wrap gap-3 leading-3 pt-8'> 
                 {discoverActions.map((item, i) => (
-                  <button className=' text-md text-black sticky'>{item}</button>
+                  <button key={i} className=' text-md text-black sticky'>{item}</button>
                 ))}
             </div>
         </div>

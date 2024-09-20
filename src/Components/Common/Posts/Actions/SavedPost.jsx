@@ -11,7 +11,7 @@ const SavedPost = ({ post }) => {
     const { currentUser } = Blog();
     const {data, loading} = useSingleFetch(
         "users", 
-        currentUser?.uid, 
+        post?.userId, 
         "savePost");
     
     useEffect(() => {
