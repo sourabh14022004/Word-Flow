@@ -10,6 +10,7 @@ import EditProfile from './EditProfile.jsx';
 import { Blog } from '../../../Context/Context.jsx';
 import { useParams } from 'react-router-dom';
 import profileImg from '../../../assets/profile.jpg'
+import useSingleFetch from '../../hooks/useSingleFetch.jsx';
 
 
 
@@ -35,7 +36,13 @@ const Profile = () => {
   const [editModal, setEditModal] = useState(false);
 
   const getUserData = allUsers.find((user) => user.id === userId);
-  
+
+
+  // geting follows and followers data.
+  const { data: follows } = useSingleFetch("users", userId, "follows");
+  const { data: followers } = useSingleFetch("users", userId, "followers");
+  const { currentUser } = Blog();
+
 
   return (
     <section className='size flex gap-[4rem] relative'>
@@ -45,8 +52,8 @@ const Profile = () => {
           <h2 className='text-3xl sm:text-5xl font-bold capitalize'>
             { getUserData ?.username}
           </h2>
-          <p className=' text-gray-500 text-sm sm:text-sm capitalize'> followers(1k)</p>
-          <p className=' text-gray-500 text-sm sm:text-sm capitalize'> following(200)</p>
+          <p className=' text-gray-500 text-sm sm:text-sm capitalize'> Followers({followers.length})</p>
+          <p className=' text-gray-500 text-sm sm:text-sm capitalize'> Followings({follows.length})</p>
         </div>
         <div className=' flex items-center gap-5 mt-[1rem] border-b border-gray-300 mb-[3rem]'>
           {activities.map((item, i) => (
@@ -88,18 +95,19 @@ const Profile = () => {
           </button>
         </div>
         {/* profile details */} 
-        {/* src/assets/profile.jpg */}
         <div className="sticky top-7 flex flex-col justify-between">
           <img 
             className="w-[3.5rem] h-[3.5rem] object-cover rounded-full"
             src={getUserData?.userImg ||`${profileImg}`} alt='profile-img'></img>
           <h2 className="py-2 font-bold capitalize">{getUserData?.username}</h2>
           <p className="text-gray-500 first-letter:uppercase text-sm">{getUserData?.bio}</p>
-          <button
+          { currentUser?.uid === getUserData?.userId  && (
+            <button
                 onClick={() => setEditModal(true)}
                 className="text-green-700 pt-6 text-sm w-fit">
                 Edit Profile
-          </button>
+            </button>
+        )}
           {/* nav */}
            <div className="flex-[1] flex items-center flex-wrap gap-3 pt-8">
                 {discoverActions.map((item) => (
