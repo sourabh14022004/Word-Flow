@@ -3,7 +3,7 @@ import sticker from '../../../assets/sticker.png'
 import sticker1 from '../../../assets/xyz.png'
 
 const Banner = () => {
-  const [model, setModel] = useState()
+  const [model, setModel] = useState(false)
   return (
     <>
       <div className='relative bg-white border-black border-b md:flex items-center justify-between h-[42.5rem]'>
@@ -35,6 +35,7 @@ const Banner = () => {
           </p>
 
           <button
+            onClick={() => setModel(true)}
             className='capitalize p-8 py-3 rounded-full border-black border-b-2  
                             bg-green-400 text-black font-medium text-[20px] transition 
                             ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 

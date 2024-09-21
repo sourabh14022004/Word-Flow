@@ -4,6 +4,7 @@ import { db } from '../../../Firebase/firebase';
 import { deleteDoc, doc, setDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import useSingleFetch from '../../hooks/useSingleFetch';
+import { useLocation } from 'react-router-dom';
 
 const FollowBtn = ({ userId, username }) => {
     const [isFollowed, setIsFollowed] = useState(false);
@@ -48,7 +49,7 @@ const FollowBtn = ({ userId, username }) => {
     
         <button 
             onClick={handleFollow}
-            className={`relative flex px-3 py-[0.2rem] rounded-lg items-center justify-center overflow-hidden ${isFollowed ? 'bg-gray-500 text-white' : "bg-gray-800 text-white px-[22.7px]"}  shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-green-600 before:duration-500 before:ease-out hover:shadow-green-600 hover:before:h-56 hover:before:w-56`}>
+            className={` relative flex px-3 py-[0.2rem] rounded-lg items-center justify-center overflow-hidden ${isFollowed ? 'bg-gray-500 text-white' : "bg-gray-800 text-white px-[22.7px]"}  shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-green-600 before:duration-500 before:ease-out hover:shadow-green-600 hover:before:h-56 hover:before:w-56`}>
             <span className="relative z-10 text-md">{isFollowed ? "Following" : "Follow"}</span>
         </button>
             

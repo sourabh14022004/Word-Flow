@@ -8,6 +8,7 @@ import { Blog } from './Context/Context.jsx';
 import { ToastContainer } from 'react-toastify';
 import Profile from './Components/Home/Profile/Profile.jsx';
 import Write from './Components/Home/Write/Write.jsx';
+import SinglePost from './Components/Common/Posts/SinglePost.jsx';
 
 
 
@@ -22,6 +23,9 @@ function App() {
           { !currentUser && <Route path = "/demo" element ={<Demo/>}></Route>}
             <Route path="/profile/:userId" element ={<Profile/>}></Route>
             <Route path="/write" element = {<Write/>}></Route>
+            <Route path='/post/:postId' element = {<SinglePost/> }></Route>
+
+
           {/* Route protection */}
 
           <Route 
