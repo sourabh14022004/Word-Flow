@@ -5,8 +5,9 @@ import { Blog } from '../../../../Context/Context';
 import { deleteDoc, doc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { db } from '../../../../Firebase/firebase';
+import { useNavigate } from 'react-router-dom';
 
-const Actions = () => {
+const Actions = ({ postId, title, desc }) => {
     const [showDrop, setShowDrop] = useState(false);
     const { setUpdateData, currentUser } = Blog();
     const handleClick = () => {
@@ -24,13 +25,7 @@ const Actions = () => {
           const ref = doc(db, "posts", postId);
           const likeRef = doc(db, "posts", postId, "likes", currentUser?.uid);
           const commentRef = doc(db, "posts", postId, "comments", currentUser?.uid);
-          const savedPostRef = doc(
-            db,
-            "users",
-            currentUser?.uid,
-            "savedPost",
-            postId
-          );
+          const savedPostRef = doc(db, "users", currentUser?.uid, "savedPost", postId );
           await deleteDoc(ref);
           await deleteDoc(likeRef);
           await deleteDoc(commentRef);
@@ -43,7 +38,7 @@ const Actions = () => {
           toast.success(error.message);
         }
       };
-
+      const navigate = useNavigate(null);
   return (
     <div className="relative">
         <button 
@@ -52,7 +47,7 @@ const Actions = () => {
             <SlOptions className="text-2xl hover:opacity-40" />
         </button>
         <DropDown showDrop={showDrop} setShowDrop={setShowDrop} size=" w-[7rem]">
-        <Button click={handleEdit} title="Edit Story" />
+        <Button click= {handleEdit} title="Edit Story" />
         <Button click={handleRemove} title="Delete Story" />
       </DropDown>
     </div>

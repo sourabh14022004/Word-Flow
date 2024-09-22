@@ -9,6 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import Profile from './Components/Home/Profile/Profile.jsx';
 import Write from './Components/Home/Write/Write.jsx';
 import SinglePost from './Components/Common/Posts/SinglePost.jsx';
+import EditPost from './Components/Common/Posts/EditPost.jsx';
 
 
 
@@ -24,6 +25,7 @@ function App() {
             <Route path="/profile/:userId" element ={<Profile/>}></Route>
             <Route path="/write" element = {<Write/>}></Route>
             <Route path='/post/:postId' element = {<SinglePost/> }></Route>
+            <Route path='/editPost/:postId' element = {<EditPost/> }></Route>
 
 
           {/* Route protection */}
