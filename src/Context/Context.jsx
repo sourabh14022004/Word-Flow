@@ -2,7 +2,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { auth, db } from '../Firebase/firebase.js';
 import Loading from '../Components/Loading/Loading.jsx';
-import { collection, doc, onSnapshot, query } from 'firebase/firestore';
+import { collection, onSnapshot, query } from 'firebase/firestore';
 
 const BlogContext = createContext();
 
@@ -12,6 +12,8 @@ const Context = ({ children }) => {
     const [userLoading, setUserLoading] = useState(true);
     const [allUsers, setAllUsers] = useState([])
     const [publish, setPublish] = useState(false);
+    const [showComment, setShowComment] = useState(true);
+    const [commentLength, setCommentLength] = useState(0);
 
 
     useEffect(() => {
@@ -44,7 +46,19 @@ const Context = ({ children }) => {
     }, []);
 
     return ( 
-            <BlogContext.Provider value={{currentUser, setCurrentUser, allUsers, userLoading, publish, setPublish}}> 
+            <BlogContext.Provider 
+                value={{
+                    currentUser, 
+                    setCurrentUser, 
+                    allUsers, 
+                    userLoading, 
+                    publish, 
+                    setPublish,
+                    showComment,
+                    setShowComment,
+                    commentLength,
+                    setCommentLength
+                }}> 
                 {loading ? <Loading/> : children}
             </BlogContext.Provider>
         );

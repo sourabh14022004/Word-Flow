@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { PiHandHeart } from "react-icons/pi";
 import { Blog } from '../../../../Context/Context';
 import { deleteDoc, doc, setDoc } from 'firebase/firestore';
 import { db } from '../../../../Firebase/firebase';
@@ -9,7 +8,7 @@ import { PiHandHeartFill } from "react-icons/pi";
 import { formatNum } from '../../../../Utils/helper';
 
 
-const Like = ( {post, postId} ) => {
+const Like = ( { postId} ) => {
     const [isLiked, setIsLiked] = useState(false);
     const {currentUser} = Blog();
 
