@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Model from '../../../Utils/Model';
 import { LiaTimesSolid } from "react-icons/lia"; 
 import { Blog } from '../../../Context/Context';
-import profile from '/Users/sourabhsarkarmacois/Desktop/Word flow/src/assets/profile.jpg'
+import profile from '../../../assets/profile.jpg'
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../../Firebase/firebase';
 import { toast } from 'react-toastify';
