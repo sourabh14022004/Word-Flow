@@ -15,9 +15,23 @@ import {
     TwitterShareButton,
     WhatsappShareButton,
   } from "react-share";
+import { toast } from 'react-toastify';
 
 const SharePost = () => {
     const [showDrop, setShowDrop] = useState(false);
+    const path = window.location.href;
+    const copyLink = async () => {
+      try {
+        await navigator.clipboard.writeText(path);
+        toast.success("Link has been copied")
+        setShowDrop(false);
+      } catch (error) {
+        toast.error(error.message);
+        setShowDrop(false);
+      }
+    }
+
+
   return (
     <div className="relative">
         <button 
@@ -26,13 +40,34 @@ const SharePost = () => {
             <FaRegShareFromSquare />
         </button>
         <DropDown showDrop={showDrop} setShowDrop={setShowDrop} size="w-[12rem]">
-            
-            <Button click = "" title = "Copy link" icon ={<PiLinkBold />} />
-            <Button click = "" title = "Share of Twitter" icon ={<FaXTwitter/>} />
-            <Button click = "" title = "Share on WhatsApp" icon ={<FaWhatsapp />} />
-            <Button click = "" title = "Share on Linkedin" icon ={<FaLinkedinIn />} />
-            <Button click = "" title = "Share on Telegram" icon ={<FaTelegram />} />
-            <Button click = "" title = "Share on FaceBook" icon ={<FaFacebook />} />
+            {/* normal copy link */}
+            <Button click = {copyLink} title = "Copy link" icon ={<PiLinkBold />} />
+
+            {/* Twitter share button */}
+            <TwitterShareButton url={path}>
+              <Button  title = "Share of Twitter" icon ={<FaXTwitter/>} />
+            </TwitterShareButton>
+
+            {/* WhatsApp share button */}
+            <WhatsappShareButton url={path}>
+              <Button  title = "Share on WhatsApp" icon ={<FaWhatsapp />} />
+            </WhatsappShareButton>
+
+            {/* Linkedin share button */}
+            <LinkedinShareButton url={path}>
+              <Button  title = "Share on Linkedin" icon ={<FaLinkedinIn />} />
+            </LinkedinShareButton>
+
+            {/* Telegram share button */}
+            <TelegramShareButton url={path}>
+              <Button  title = "Share on Telegram" icon ={<FaTelegram />} />
+            </TelegramShareButton>
+
+            {/* Facebook share button */}
+            <FacebookShareButton url={path}>
+              <Button  title = "Share on FaceBook" icon ={<FaFacebook />} />
+            </FacebookShareButton>
+      
         </DropDown>
     </div>
   )

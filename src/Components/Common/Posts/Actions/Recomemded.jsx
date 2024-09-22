@@ -60,8 +60,8 @@ const Post = ({ post }) => {
 
   const navigate = useNavigate(null);
 
-//   const { username, userImg } =
-//     data && data.find((user) => user?.id === userId);
+  // const { username, userImg } =
+  //   data && data.find((user) => user?.id === userId);
 
   // Safely find the user and check if they exist before destructuring
   const user = data && data.find((user) => user?.id === userId);
