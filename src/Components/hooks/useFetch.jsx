@@ -1,4 +1,4 @@
-import { collection, onSnapshot, query } from 'firebase/firestore';
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { db } from '../../Firebase/firebase';
 
@@ -7,7 +7,7 @@ const useFetch = (collectionName) => {
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         const getUsers = () => {
-            const postRef = query(collection(db, collectionName));
+            const postRef = query(collection(db, collectionName), orderBy("created", "desc"));
             onSnapshot(postRef, (snapshot) => {
                 setData(
                     snapshot.docs.map((doc) => ({

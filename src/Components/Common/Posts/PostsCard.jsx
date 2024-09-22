@@ -21,7 +21,7 @@ const PostsCard = ({ post }) => {
         className=' flex flex-col sm:flex-row gap-4 cursor-pointer'>
         {loading && <Loading/>}
         <div className=' flex-[2.5]'>
-          <p className=' pb-2 font-semibold capitalize'>{getUserData.username}</p>
+          <p className=' pb-2 font-semibold capitalize'>{username}</p>
           <h2 className=' text-xl font-bold line-clamp-2 leading-6 capitalize'> {title}</h2>
           <div 
             className=' py-1 text-gray-500 line-clamp-2 leading-5' 

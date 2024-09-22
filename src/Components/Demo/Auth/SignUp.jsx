@@ -45,6 +45,7 @@ const SignUp = ({ setSignReq, setModel }) => {
                     email: form.email,
                     userImg: "",
                     bio: "",
+                    created : Date.now(),
 
                 });
                 navigate("/");

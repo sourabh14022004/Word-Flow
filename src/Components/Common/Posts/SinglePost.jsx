@@ -8,6 +8,12 @@ import FollowBtn from '../../Home/UserToFollow/FollowBtn';
 import { Blog } from '../../../Context/Context';
 import { readTime } from '../../../Utils/helper';
 import moment from 'moment';
+import SavedPost from './Actions/SavedPost';
+import Actions from './Actions/Actions';
+import Like from './Actions/Like';
+import Comment from './Actions/Comment';
+import SharePost from './Actions/SharePost';
+import Recommended from './Actions/Recomemded';
 
 const SinglePost = () => {
     const { postId } = useParams();
@@ -49,26 +55,52 @@ const SinglePost = () => {
     const navigate = useNavigate();
   return (
     <>
-        {loading ? <Loading/> : <section className="w-[90%] md:w-[80%] lg:w-[60%] mx-auto py-[3rem]">
-            <h2 className="text-4xl font-extrabold capitalize">{title}</h2>
-            <div className="flex items-center gap-6 py-[2rem]">
-                <img onClick={() => navigate(`/profile/${userId}`)}
-                    className="w-[3rem] h-[3rem] object-cover rounded-full cursor-pointer"
-                    src={userImg}
-                    alt="user-img" 
-                />
-                <div>
-                    <div className="capitalize">
-                        <span>{username} .</span>
-                        {currentUser?.uid !== userId && <FollowBtn userId={userId} />}
+        {loading ? (<Loading/>
+        ) : (
+            <>
+                    <section className="w-[90%] md:w-[80%] lg:w-[60%] mx-auto py-[3rem]">
+                <h2 className="text-4xl font-extrabold capitalize">{title}</h2>
+                <div className="flex items-center gap-6 py-[2rem]">
+                    <img onClick={() => navigate(`/profile/${userId}`)}
+                        className="w-[3rem] h-[3rem] object-cover rounded-full cursor-pointer"
+                        src={userImg}
+                        alt="user-img" 
+                    />
+                    <div>
+                        <div className="capitalize flex gap-2">
+                            <span>{username} .</span>
+                            {currentUser?.uid !== userId && <FollowBtn userId={userId} />}
+                        </div>
+                        <p className="text-sm text-gray-500">
+                            {readTime({ __html: desc })} min read .
+                            <span className="ml-1">{moment(created).fromNow()}</span>
+                        </p>
                     </div>
-                    <p className="text-sm text-gray-500">
-                        {readTime({ __html: desc })} min read .
-                        <span className="ml-1">{moment(created).fromNow()}</span>
-                    </p>
                 </div>
-            </div>
-        </section> }
+                <div className='flex items-center justify-between border-b border-t border-gray-200 py-[0.5rem]'>
+                    <div className=' flex items-center gap-5'>
+                        <Like post ={post} postId = { postId }/>
+                        <Comment/>
+
+                    </div>
+                    <div className=' flex items-center pt-2 gap-5'>
+                    {post &&  <SavedPost post={post} />}
+                        <SharePost/>
+                        { currentUser?.uid === post.postId && <Actions/> }
+                        
+                    </div>
+                </div>
+                <div className=' mt-[3rem]'>
+                    <img className=' w-full h-[400px] object-cover' src={postImg} alt="post-img" />
+                    <div
+                    className="mt-6"
+                    dangerouslySetInnerHTML={{ __html: desc }} //decsription
+                />
+                </div>
+            </section>
+            {post && <Recommended post ={post} />}
+        </> 
+        )}
     </>
   )
 }

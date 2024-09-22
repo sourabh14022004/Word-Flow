@@ -16,6 +16,9 @@ export default {
         'Baskerville-regular': ["Libre Baskerville", 'serif'],
         'Playfair': ["Playfair Display", 'serif']
       },
+      gridTemplateColumns: {
+        card: "repeat(auto-fit, minmax(280px, 1fr))",
+      },
     },
   },
   plugins: [],

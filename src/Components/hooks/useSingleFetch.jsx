@@ -7,6 +7,7 @@ const useSingleFetch = ( collectionName, id, subCol) => {
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         const getSingleData = () => {
+            if (id) {
             const postRef = query(collection(db, collectionName, id, subCol));
             onSnapshot(postRef, (snapshot) => {
                 setData(
@@ -18,6 +19,7 @@ const useSingleFetch = ( collectionName, id, subCol) => {
                 setLoading(false);
             });
         };
+    }
         getSingleData();
     }, [db, id]);
   return {
