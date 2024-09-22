@@ -3,6 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { auth, db } from '../Firebase/firebase.js';
 import Loading from '../Components/Loading/Loading.jsx';
 import { collection, onSnapshot, query } from 'firebase/firestore';
+import useFetch from '../Components/hooks/useFetch.jsx';
 
 const BlogContext = createContext();
 
@@ -30,6 +31,7 @@ const Context = ({ children }) => {
         });
         return () => unsubscribe();
     }, [currentUser]);
+
 // get users
     useEffect(() => {
         const getUsers = () => {
@@ -47,6 +49,7 @@ const Context = ({ children }) => {
         getUsers();
     }, []);
 
+    const { data: postData, loading: postLoading } = useFetch("posts")
     return ( 
             <BlogContext.Provider 
                 value={{
@@ -66,6 +69,8 @@ const Context = ({ children }) => {
                     setTitle,
                     description,
                     setDescription,
+                    postData,
+                    postLoading,
                 }}> 
                 {loading ? <Loading/> : children}
             </BlogContext.Provider>

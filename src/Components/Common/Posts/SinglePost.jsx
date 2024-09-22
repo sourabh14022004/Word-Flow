@@ -37,8 +37,8 @@ const SinglePost = () => {
                         const getUser = await getDoc(userRef);
             
                         if (getUser.exists()) {
-                        const userData = getUser.data();
-                        setPost({ ...postData, ...userData, id: postId });
+                        const {created, ...rest} = getUser.data();
+                        setPost({ ...postData, ...rest, id: postId });
                         }
                     }
                 }
@@ -94,11 +94,10 @@ const SinglePost = () => {
                     </div>
                 </div>
                 <div className=' mt-[3rem]'>
-                    <img className=' w-full h-[400px] object-cover' src={postImg} alt="post-img" />
-                    <div
-                    className="mt-6"
-                    dangerouslySetInnerHTML={{ __html: desc }} //decsription
-                />
+                    {postImg && (
+                        <img lassName="w-full h-[400px] object-cover" src={postImg} alt="post-img"
+                        />
+                    )}
                 </div>
             </section>
             {post && <Recommended post ={post} />}
