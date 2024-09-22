@@ -42,7 +42,7 @@ const SinglePost = () => {
                         }
                     }
                 }
-            setLoading(false)
+                setLoading(false)
             } catch (error) {
                 toast.error(error.message)
                 setLoading(false)
@@ -56,12 +56,15 @@ const SinglePost = () => {
     const navigate = useNavigate();
   return (
     <>
-        {loading ? (<Loading/>
+    {loading ? (
+        <Loading/>
         ) : (
             <>
                     <section className="w-[90%] md:w-[80%] lg:w-[60%] mx-auto py-[3rem]">
                 <h2 className="text-4xl font-extrabold capitalize">{title}</h2>
                 <div className="flex items-center gap-6 py-[2rem]">
+
+
                     <img onClick={() => navigate(`/profile/${userId}`)}
                         className="w-[3rem] h-[3rem] object-cover rounded-full cursor-pointer"
                         src={userImg}
@@ -98,6 +101,10 @@ const SinglePost = () => {
                         <img lassName="w-full h-[400px] object-cover" src={postImg} alt="post-img"
                         />
                     )}
+                    <div
+                    className="mt-6"
+                    dangerouslySetInnerHTML={{ __html: desc }}
+                    />
                 </div>
             </section>
             {post && <Recommended post ={post} />}
