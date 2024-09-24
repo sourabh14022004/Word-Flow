@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import sticker from '../../../assets/sticker.png'
 import sticker1 from '../../../assets/xyz.png'
+import Auth from './Auth'
 
 const Banner = () => {
-  const [model, setModel] = useState(false)
+  const [model, setModel]= useState(false);
+  
   return (
     <>
-      <div className='relative bg-white border-black border-b md:flex items-center justify-between h-[42.5rem]'>
+    <Auth model = {model} setModel={setModel}/>
+   <div className='relative bg-white border-black border-b md:flex items-center justify-between h-[42.5rem]'>
         {/* Mobile Sticker */}
         <div className='md:hidden flex justify-center'>
           <img src={sticker} alt="sticker" className="w-1/2" />
@@ -33,7 +36,6 @@ const Banner = () => {
           <p className='text-lg sm:text-xl md:text-2xl relative z-10'>
             A space to explore, express, and expand your knowledge.
           </p>
-
           <button
             onClick={() => setModel(true)}
             className='capitalize p-8 py-3 rounded-full border-black border-b-2  
@@ -49,6 +51,7 @@ const Banner = () => {
           <img src={sticker} alt="sticker" className="w-full" />
         </div>
       </div>
+    
     </>
   )
 }

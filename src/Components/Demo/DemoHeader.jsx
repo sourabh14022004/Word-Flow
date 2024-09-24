@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { nav } from '../../data.js';
 import Auth from './Auth/Auth.jsx';
 import wordflow from '../../assets/word-flow-crop.png';
@@ -8,6 +8,7 @@ import wordflow from '../../assets/word-flow-crop.png';
 const DemoHeader = () => {
     const [isActive, setIsActive] = useState(false);
     const [model, setModel]= useState(false);
+
 
     useEffect (() => {
         const scrollMe = () => {

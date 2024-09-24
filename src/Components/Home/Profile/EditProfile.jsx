@@ -155,4 +155,3 @@ const EditProfile = ({editModal, setEditModal, getUserData}) => {
 }
 
 export default EditProfile;
-

@@ -58,7 +58,6 @@ const googleAuth = async () => {
                         ${model ? "visible opacity-100" : "invisible opacity-0"}
                         transition-all duration-500
                         `}>
-
             <button 
                 onClick={() => setModel(false)}
                 className={`absolute top-8 right-8 text-2xl hover:opacity-50`}>

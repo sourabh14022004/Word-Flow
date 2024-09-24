@@ -19,6 +19,9 @@ export default {
       gridTemplateColumns: {
         card: "repeat(auto-fit, minmax(280px, 1fr))",
       },
+      animation: {
+        'spin-slow': 'spin 3s linear infinite',
+      },
     },
   },
   plugins: [],

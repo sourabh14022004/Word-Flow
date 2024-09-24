@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import Input from '../../../Utils/Input';
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
@@ -19,13 +20,23 @@ const SignUp = ({ setSignReq, setModel }) => {
         password : "",
         rePassword : "",
     });
+    // Regular expression for validating email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (form[("username","email","password","rePassword")] === "" ) {
+        if (form[("username","email","password","Enter your password again")] === "" ) {
             toast.error("All fields are required")
-        } else if (form["password"] !== form["rePassword"]) {
+        } else if (!emailRegex.test(form["email"])) {
+            // Check if email format is valid
+            toast.error("Please enter a valid email address");
+            return;
+        } else if (form["password"] !== form["Enter your password again"]) {
             toast.error("Your password are not matching!!");
+            return;
+        } else if (form["Enter your password again"].length && form["password"].length < 6) {
+            toast.error("Password must be at least 6 digits.")
             return;
         } else {
             setLoading(true);
@@ -69,7 +80,7 @@ const SignUp = ({ setSignReq, setModel }) => {
             <Input form = {form} setForm={setForm} type="text" title="username"/>
             <Input form = {form} setForm={setForm} type="email" title="email"/>
             <Input form = {form} setForm={setForm} type="password" title="password"/>
-            <Input form = {form} setForm={setForm} type="password" title="rePassword"/>
+            <Input form = {form} setForm={setForm} type="password" title="Enter your password again"/>
             <button 
                 className={` px-4 py-1 text-sm rounded-full bg-green-500 hover:bg-green-700 
                 text-white w-fit mx-auto ${loading ? "opacity-50 pointer-events-none" : "" }`}>

@@ -10,6 +10,7 @@ import Profile from './Components/Home/Profile/Profile.jsx';
 import Write from './Components/Home/Write/Write.jsx';
 import SinglePost from './Components/Common/Posts/SinglePost.jsx';
 import EditPost from './Components/Common/Posts/EditPost.jsx';
+import UnderConstractionPage from './Constractions/UnderConstractionPage.jsx';
 
 
 
@@ -20,12 +21,14 @@ function App() {
       {currentUser ? <HomeHeader/> : <DemoHeader/>}
       <ToastContainer/>
       <Routes>
+          <Route path='/underCons' element = {<UnderConstractionPage/>}></Route>
           { currentUser && <Route path = "/" element={<Home/>}></Route>}
           { !currentUser && <Route path = "/demo" element ={<Demo/>}></Route>}
             <Route path="/profile/:userId" element ={<Profile/>}></Route>
             <Route path="/write" element = {<Write/>}></Route>
             <Route path='/post/:postId' element = {<SinglePost/> }></Route>
             <Route path='/editPost/:postId' element = {<EditPost/> }></Route>
+            
 
 
           {/* Route protection */}
