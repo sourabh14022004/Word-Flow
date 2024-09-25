@@ -34,7 +34,7 @@ const EditProfile = ({editModal, setEditModal, getUserData}) => {
 
 // save form 
   const saveForm = async () => {
-    if (form["username"] === "" || form["bio"] === "") {
+    if (form["username"] === "" && form["bio"] === "") {
       toast.error("All inputs are required!!!");
       return;
     }
