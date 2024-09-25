@@ -135,11 +135,11 @@ const Preview = ({setPublish, description, title}) => {
                 <div className="flex-[1] flex flex-col gap-4 mb-5 md:mb-0">
                     <h3 className="text-2xl">
                         Publishing to:
-                        <span className="font-bold capitalize"> Milad Tech</span>
+                        <span className="font-bold capitalize">Readers worldwide on Word Flow.</span>
                     </h3>
                     <p>
-                        Add or change topics up to 5 so readers know what your story is
-                        about
+                        Press Enter to Add tags or change topics up to 5 so readers know what your story is
+                        about.
                     </p>
                     <TagsInput value={tags} onChange={setTags} />
                     <button
