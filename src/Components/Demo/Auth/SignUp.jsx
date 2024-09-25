@@ -7,6 +7,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../../../Firebase/firebase.js';
 import { useNavigate } from 'react-router-dom';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
+import profile from "../../../assets/profile.jpg";
 
 
 
@@ -54,9 +55,9 @@ const SignUp = ({ setSignReq, setModel }) => {
                     userId: user.uid,
                     username: form.username,
                     email: form.email,
-                    userImg: "",
+                    userImg: profile,
                     bio: "",
-                    created : Date.now(),
+                    created : new Date(),
 
                 });
                 navigate("/");
