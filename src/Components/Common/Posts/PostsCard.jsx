@@ -14,7 +14,7 @@ const PostsCard = ({ post }) => {
 
   
   return (
-    <section>
+    <section className=' w-[850px]'>
       <div 
         onClick={() => navigate(`/post/${postId}`)}
         className=' flex flex-col sm:flex-row gap-4 cursor-pointer'>
@@ -26,12 +26,12 @@ const PostsCard = ({ post }) => {
             dangerouslySetInnerHTML={{__html : desc}}></div>
         </div>
         { postImg && (
-          <div className=' flex-[1]'>
-            <img src={postImg} alt='postImg' className=' w-[53rem] h-[8rem] object-cover'></img>
+          <div className=' flex-[1] py-3'>
+            <img src={postImg} alt='postImg' className=' w-[53rem] h-[8rem] object-cover rounded-md transition  transform hover:scale-120 duration-500'></img>
         </div>
       )}
       </div>
-      <div className=' flex items-center justify-between w-full md:w-[70%] mt-[2rem] md:mt-0'>
+      <div className=' flex items-center justify-between w-full md:w-[70%] mt-[1rem] md:mt-0'>
         <p className=' text-xs text-gray-600'> 
           {readTime({__html : desc })} min read . 
           { moment(created).format("MMM DD YYYY") }

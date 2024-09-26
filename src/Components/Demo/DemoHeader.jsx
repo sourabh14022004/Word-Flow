@@ -18,7 +18,7 @@ const DemoHeader = () => {
     }, [])
     
   return (
-    <header className={` border-b border-black sticky top-0 z-50 ${isActive ? "bg-green-100" : "bg-white"} transition-all duration-500 `}>
+    <header className={` border-b border-black sticky top-0 z-50 ${isActive ? "bg-green-200" : "bg-white"} transition-all duration-500 `}>
         <div className='size h-[70px] flex items-center justify-between'>
             <div className=' flex items-center justify-between'>
                 <div>

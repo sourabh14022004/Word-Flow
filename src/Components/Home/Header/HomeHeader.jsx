@@ -60,7 +60,7 @@ const HomeHeader = () => {
               />
             </span>
           </Link>
-          <Search model={searchModel} setModel={searchModel} />
+          <Search model={searchModel} setModel={setSearchModel} />
         </div>
 
 

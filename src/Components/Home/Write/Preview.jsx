@@ -144,7 +144,7 @@ const Preview = ({setPublish, description, title}) => {
                     <TagsInput value={tags} onChange={setTags} />
                     <button
                         onClick={handleSubmit}
-                        className="btn !bg-green-700 !w-fit !py-2 !px-3 !text-white !rounded-full !text-md">
+                        className={`btn !bg-green-700 !w-fit !py-2 !px-3 !text-white !rounded-full !text-md transition !duration-500 !shadow-lg transform hover:-translate-y-1 hover:scale-110  ${loading ? ' !border-emerald-400 border-2':' !border-black border-2'}`}>
                             {loading ? "Submitting" : "Publish now"}
                     </button>
                 </div>

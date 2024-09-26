@@ -113,7 +113,7 @@ const Comment = ( { item: comment, postId}) => {
                         className="w-fit text-sm">Cancel</button>
                     <button 
                         onClick={handleEdit}
-                        className="btn !text-white !bg-green-700 !rounded-full !text-xs">
+                        className={`btn !text-white !bg-green-700 !rounded-full !text-xs ${ loading ? ' bg-cyan-500':''}`}>
                             {loading ? "Updating..." : "Update" }
                         </button>
 
