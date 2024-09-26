@@ -13,7 +13,7 @@ const Context = ({ children }) => {
     const [userLoading, setUserLoading] = useState(true);
     const [allUsers, setAllUsers] = useState([])
     const [publish, setPublish] = useState(false);
-    const [showComment, setShowComment] = useState(true);
+    const [showComment, setShowComment] = useState(false);
     const [commentLength, setCommentLength] = useState(0);
     const [updateData, setUpdateData] = useState([]);
     const [title, setTitle] = useState("");
