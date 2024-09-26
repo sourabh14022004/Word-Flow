@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { Blog } from '../../../../Context/Context';
 import { deleteDoc, doc, setDoc } from 'firebase/firestore';
 import { db } from '../../../../Firebase/firebase';
-import { toast } from 'react-toastify';
+import { Slide, toast } from 'react-toastify';
 import useSingleFetch from '../../../hooks/useSingleFetch';
 import { PiHandHeartFill } from "react-icons/pi";
 import { formatNum } from '../../../../Utils/helper';
 
 
-const Like = ( { postId} ) => {
+const Like = ({ postId } ) => {
     const [isLiked, setIsLiked] = useState(false);
-    const {currentUser} = Blog();
+    const {currentUser, setAuthModel} = Blog();
 
     const {data} = useSingleFetch("posts", postId, "likes");
 
@@ -20,27 +20,29 @@ const Like = ( { postId} ) => {
         );
       }, [data]);
 
-
-
-    const handleLike  = async () => {
+      const handleLike = async () => {
         try {
-            if(currentUser) {
-                const likeRef = doc(db, "posts", postId, "likes", currentUser?.uid);
-                if (isLiked) {
-                    await deleteDoc(likeRef)
-                }  else {
-                    await setDoc(likeRef, {
-                        useId: currentUser?.uid,
-                    }) 
-                }
-
+          if (currentUser) {
+            const likeRef = doc(db, "posts", postId, "likes", currentUser?.uid);
+            if (isLiked) {
+              await deleteDoc(likeRef);
+            } else {
+              await setDoc(likeRef, {
+                userId: currentUser?.uid,
+              });
             }
+          } else {
+            setAuthModel(true);
+          }
         } catch (error) {
-            toast.error(error.message);
+          toast.error(error.message,{
+            position:"top-center",
+            transition: Slide,
+            closeOnClick: true,
+          });
         }
-        
-            
-    };
+      };
+
   return (
     <button 
         onClick={handleLike}

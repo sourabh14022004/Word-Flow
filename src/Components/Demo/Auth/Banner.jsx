@@ -2,13 +2,15 @@ import React, { useState } from 'react'
 import sticker from '../../../assets/sticker.png'
 import sticker1 from '../../../assets/xyz.png'
 import Auth from './Auth'
+import { Blog } from '../../../Context/Context'
 
 const Banner = () => {
-  const [model, setModel]= useState(false);
+  const {authModel, setAuthModel}= Blog();
+
   
   return (
     <>
-    <Auth model = {model} setModel={setModel}/>
+    <Auth model = {authModel} setModel={setAuthModel}/>
    <div className='relative bg-white border-black border-b md:flex items-center justify-between h-[42.5rem]'>
         {/* Mobile Sticker */}
         <div className='md:hidden flex justify-center'>
@@ -37,7 +39,7 @@ const Banner = () => {
             A space to explore, express, and expand your knowledge.
           </p>
           <button
-            onClick={() => setModel(true)}
+            onClick={() => setAuthModel(true)}
             className='capitalize p-8 py-3 rounded-full border-black border-b-2  
                             bg-green-400 text-black font-medium text-[20px] transition 
                             ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 

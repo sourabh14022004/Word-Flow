@@ -10,9 +10,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { secretEmail } from '../../../Utils/helper.js';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../../Firebase/firebase.js';
-import { toast } from 'react-toastify';
+import { Bounce, toast } from 'react-toastify';
 
-const UserModel = (setModel) => {
+const UserModel = ({ setModel }) => {
     const { currentUser } = Blog();
     const userModal = [
         {
@@ -42,9 +42,18 @@ const UserModel = (setModel) => {
       try {
         await signOut(auth);
         navigate("/demo")
-        toast.success("User has been logged out")
+        toast.success("User has been logged out", {
+          position: "top-center",
+          transition: Bounce,
+          closeOnClick: true,
+        })
+
       } catch (error){
-        toast.error(error.message)
+        toast.error(error.message,{
+          position:"top-center",
+          transition: Slide,
+          closeOnClick: true,
+        })
       }
     };
 

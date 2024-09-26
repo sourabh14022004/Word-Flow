@@ -41,15 +41,23 @@ const googleAuth = async () => {
           created: new Date(),
         });
         navigate("/");
-        toast.success("User have been Signed in");
+        toast.success("User have been Signed in",{
+            position: "top-center",
+            transition: Bounce,
+            closeOnClick: true,
+        });
         setModel(false);
       }
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.message,{
+            position:"top-center",
+            transition: Slide,
+            closeOnClick: true,
+          }
+      );
     }
   };
-
-
+  
   return (
     <Model model = {model} setModel ={setModel}>
         <section 
@@ -80,7 +88,11 @@ const googleAuth = async () => {
                                 icon = {<FcGoogle className=' text-2xl'/>} 
                                 text = {`${createUser ? "Sign up" : "Sign in"} with Google`}/>
                             <Button
-                                click={() => toast.error("Facebook auth not implemented yet")} // Auth in facebook not added
+                                click={() => toast.error("Facebook auth not implemented yet",{
+                                    position:"top-center",
+                                    transition: Slide,
+                                    closeOnClick: true,
+                                })} // Auth in facebook not added
                                 icon = {<MdFacebook className=' text-2xl text-blue-600'/>} 
                                 text = {`${createUser ? "Sign up" : "Sign in"} with Facebook`}/>
                             <Button 
@@ -91,8 +103,7 @@ const googleAuth = async () => {
 
                         <div className=' flex  items-center justify-center mb-9'>
                             <p>{createUser ? "Already have an account?" : "No Account?"}</p>
-                            <button 
-                                // onClick={() => setCreateUser(!createUser)}
+                            <button
                                 onClick={() => setCreateUser(!createUser)} 
                                 className=' text-green-600 hover:text-green-800 poppins-semibold'>
                                     {createUser ? "Sign in":"Create one"}

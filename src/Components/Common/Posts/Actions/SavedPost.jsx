@@ -3,16 +3,16 @@ import { FaDownload } from "react-icons/fa6";
 import { Blog } from '../../../../Context/Context';
 import { deleteDoc, doc, setDoc } from 'firebase/firestore';
 import { db } from '../../../../Firebase/firebase';
-import { toast } from 'react-toastify';
+import { Slide, toast } from 'react-toastify';
 import useSingleFetch from '../../../hooks/useSingleFetch';
 
 const SavedPost = ({ post }) => {
     const [isSaved, setIsSaved] = useState(false);
-    const { currentUser } = Blog();
+    const { currentUser, setAuthModel } = Blog();
     const {data} = useSingleFetch("users", post?.userId, "savePost");
     
     useEffect(() => {
-        setIsSaved(data && data.find((item) => item.id  === post.id))
+        setIsSaved(data && data.find((item) => item.id  === currentUser?.uid))
     }, [data, post?.id]);
 
     const handleSave = async () => {
@@ -27,15 +27,32 @@ const SavedPost = ({ post }) => {
                   );
                   if (isSaved) {
                     await deleteDoc(saveRef)
-                    toast.success("Post has been unsaved")
-                } else {
-                    await setDoc(saveRef, {
-                        ...post,
+                    toast.success("Post has been unsaved", {
+                        position: "top-center",
+                        transition: Bounce,
+                        closeOnClick: true,
+                        })
+                    } else {
+                        await setDoc(saveRef, {
+                            ...post,
                     });
-                    toast.success("Post has been Saved")
-                }
-            }
-        } catch (error){}
+                    toast.success("Post has been Saved",{
+                        position: "top-center",
+                        transition: Bounce,
+                        closeOnClick: true,
+                    });
+                } 
+            } else {
+                setAuthModel(true)
+            };
+
+        } catch (error){
+            toast.error(error.message, {
+                position: "top-center",
+                transition: Slide,
+                closeOnClick: true,
+            })
+        }
     };
   return (
     <>

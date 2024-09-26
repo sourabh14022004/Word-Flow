@@ -36,7 +36,7 @@ const SharePost = () => {
     <div className="relative">
         <button 
             onClick={() => setShowDrop(!showDrop)}
-            className="text-2xl py-1">
+            className="text-2xl py-1 hover:opacity-40 transition-opacity">
             <FaRegShareFromSquare />
         </button>
         <DropDown showDrop={showDrop} setShowDrop={setShowDrop} size="w-[12rem]">
