@@ -26,7 +26,7 @@ const Comment = ( { item: comment, postId}) => {
             setDrop(false);
             toast.success("Comment has been removed")
         } catch (error) {
-            toast.success(error.messaeg)
+            toast.error(error.messaeg)
         }
     }
     const editCommentText = () => {
@@ -79,9 +79,8 @@ const Comment = ( { item: comment, postId}) => {
                             </button>
                             <DropDown
                                 showDrop={drop} setShowDrop={setDrop} size="w-[10rem]">
-                                <Button click={editCommentText} title="Edit this response"
-                                />
-                                <Button click={removeComment} title="Delete" />
+                                <button className='p-2 hover:bg-gray-200 text-black/80 w-full text-sm text-left' onClick={editCommentText}>Edit this response</button>
+                                <button className="p-2 hover:bg-gray-200 text-black/80 w-full text-sm text-left text-red-500" onClick={removeComment}>Delete</button>
                             </DropDown>
                         </>
                     )}
