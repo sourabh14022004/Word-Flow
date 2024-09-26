@@ -38,6 +38,7 @@ const googleAuth = async () => {
           email: newUser.email,
           userImg: newUser.photoURL,
           bio: "",
+          created: new Date(),
         });
         navigate("/");
         toast.success("User have been Signed in");
