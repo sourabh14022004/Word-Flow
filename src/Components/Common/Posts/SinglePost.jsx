@@ -2,7 +2,7 @@ import { doc, getDoc, increment, updateDoc } from 'firebase/firestore';
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { db } from '../../../Firebase/firebase';
-import { toast } from 'react-toastify';
+import { Bounce, Slide, toast } from 'react-toastify';
 import Loading from '../../Loading/Loading';
 import FollowBtn from '../../Home/UserToFollow/FollowBtn';
 import { Blog } from '../../../Context/Context';
@@ -37,7 +37,11 @@ useEffect(() => {
           { merge: true }
         );
       } catch (error) {
-        toast.error(error.message);
+        toast.error(error.message, {
+            position:"top-center",
+            transition: Slide,
+            closeOnClick: true,
+        });
       }
     };
     incrementPageView();
@@ -67,7 +71,11 @@ useEffect(() => {
                 }
                 setLoading(false)
             } catch (error) {
-                toast.error(error.message)
+                toast.error(error.message,{
+                    position:"top-center",
+                    transition: Slide,
+                    closeOnClick: true,
+                })
                 setLoading(false)
             }
         };
@@ -83,7 +91,7 @@ useEffect(() => {
         <Loading/>
         ) : (
             <>
-                    <section className="w-[90%] md:w-[80%] lg:w-[60%] mx-auto py-[3rem]">
+                <section className="w-[90%] md:w-[80%] lg:w-[60%] mx-auto py-[3rem]">
                 <h2 className="text-4xl font-extrabold capitalize">{title}</h2>
                 <div className="flex items-center gap-6 py-[2rem]">
 
@@ -96,7 +104,7 @@ useEffect(() => {
                     <div>
                         <div className="capitalize flex gap-2">
                             <span>{username} .</span>
-                            {currentUser?.uid !== userId && <FollowBtn userId={userId} />}
+                            {currentUser && currentUser?.uid !== userId && <FollowBtn userId={userId} />}
                         </div>
                         <p className="text-sm text-gray-500">
                             {readTime({ __html: desc })} min read .
@@ -121,7 +129,7 @@ useEffect(() => {
                 </div>
                 <div className=' mt-[3rem]'>
                     {postImg && (
-                        <img lassName="w-full h-[400px] object-cover" src={postImg} alt="post-img"
+                        <img className="w-full h-[400px] object-cover" src={postImg} alt="post-img"
                         />
                     )}
                     <div
