@@ -14,10 +14,10 @@ const PostsCard = ({ post }) => {
 
   
   return (
-    <section className=' w-[850px]'>
+    <section className=' w-full h-full'>
       <div 
         onClick={() => navigate(`/post/${postId}`)}
-        className=' flex flex-col sm:flex-row gap-4 cursor-pointer'>
+        className=' flex flex-col sm:flex-row gap-8 cursor-pointer'>
         <div className=' flex-[2.5]'>
           <p className=' pb-2 font-semibold capitalize'>{username}</p>
           <h2 className=' text-xl font-bold line-clamp-2 leading-6 capitalize'> {title}</h2>

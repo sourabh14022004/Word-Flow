@@ -1,6 +1,5 @@
 import React from 'react'
 import PostsCard from './PostsCard';
-import useFetch from '../../hooks/useFetch';
 import Loading from '../../Loading/Loading';
 import { Blog } from '../../../Context/Context';
 
