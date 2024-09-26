@@ -3,11 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { nav } from '../../data.js';
 import Auth from './Auth/Auth.jsx';
 import wordflow from '../../assets/word-flow-crop.png';
-// import sticker from '../../assets/sticker.png'
+import { Blog } from '../../Context/Context.jsx';
+
 
 const DemoHeader = () => {
     const [isActive, setIsActive] = useState(false);
-    const [model, setModel]= useState(false);
+    const {authModel, setAuthModel}= Blog();
 
 
     useEffect (() => {
@@ -44,14 +45,14 @@ const DemoHeader = () => {
                 </div>
                 <div className=' relative '>
                     <button 
-                        onClick={() => setModel(true)}
+                        onClick={() => setAuthModel(true)}
                         className=" capitalize hidden text-base sm:flex items-center">
                         sign in
                     </button>
-                    <Auth model = {model} setModel={setModel}/>
+                    <Auth model = {authModel} setModel={setAuthModel}/>
                 </div>
                 <button 
-                    onClick={() => setModel(true)}
+                    onClick={() => setAuthModel(true)}
                     className={`capitalize ${isActive ? "bg-green-800" : "bg-black"} transition-all duration-800 text-white p-2 px-3 rounded-full font-medium `}>
                     get started
                 </button>
