@@ -6,7 +6,7 @@ import { BiDotsHorizontalRounded } from "react-icons/bi";
 import DropDown from '../../../Utils/DropDown';
 import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../../Firebase/firebase';
-import { Slide, toast } from 'react-toastify';
+import { Bounce, Slide, toast } from 'react-toastify';
 
 const Comment = ( { item: comment, postId}) => {
     const {allUsers, currentUser } = Blog();
@@ -32,7 +32,7 @@ const Comment = ( { item: comment, postId}) => {
         } catch (error) {
             toast.error(error.messaeg,{
                 position:"top-center",
-                transition:Slide,
+                transition:Bounce,
                 closeOnClick:true,
             })
         }
@@ -63,7 +63,7 @@ const Comment = ( { item: comment, postId}) => {
         } catch (error) {
           toast.error(error.message, {
             position:"top-center",
-            transition:Slide,
+            transition:Bounce,
             closeOnClick:true,
           });
         } finally {
