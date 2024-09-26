@@ -18,6 +18,8 @@ const Context = ({ children }) => {
     const [updateData, setUpdateData] = useState([]);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [authModel, setAuthModel] = useState(false);
+
 
     useEffect(() => {
         
@@ -33,48 +35,51 @@ const Context = ({ children }) => {
     }, [currentUser]);
 
 // get users
-    useEffect(() => {
-        const getUsers = () => {
-            const postRef = query(collection(db, "users"));
-            onSnapshot(postRef, (snapshot) => {
-                setAllUsers(
-                    snapshot.docs.map((doc) => ({
-                        ...doc.data(),
-                        id: doc.id,
-                    }))
-                );
-                setUserLoading(false);
-            });
-        };
-        getUsers();
-    }, []);
-
-    const { data: postData, loading: postLoading } = useFetch("posts")
-    return ( 
-            <BlogContext.Provider 
-                value={{
-                    currentUser, 
-                    setCurrentUser, 
-                    allUsers, 
-                    userLoading, 
-                    publish, 
-                    setPublish,
-                    showComment,
-                    setShowComment,
-                    commentLength,
-                    setCommentLength,
-                    updateData,
-                    setUpdateData,
-                    title,
-                    setTitle,
-                    description,
-                    setDescription,
-                    postData,
-                    postLoading,
-                }}> 
-                {loading ? <Loading/> : children}
-            </BlogContext.Provider>
+useEffect(() => {
+    const getUsers = () => {
+      const postRef = query(collection(db, "users"));
+      onSnapshot(postRef, (snapshot) => {
+        setAllUsers(
+          snapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+          }))
         );
+        setUserLoading(false);
+      });
+    };
+    getUsers();
+  }, []);
+
+  const { data: postData, loading: postLoading } = useFetch("posts");
+
+  return (
+    <BlogContext.Provider
+      value={{
+        currentUser,
+        setCurrentUser,
+        allUsers,
+        userLoading,
+        publish,
+        setPublish,
+        showComment,
+        setShowComment,
+        commentLength,
+        setCommentLength,
+        updateData,
+        setUpdateData,
+        title,
+        setTitle,
+        description,
+        setDescription,
+        postData,
+        postLoading,
+        authModel,
+        setAuthModel,
+      }}>
+      {loading ? <Loading /> : children}
+    </BlogContext.Provider>
+  );
 };
 export default Context;
 
