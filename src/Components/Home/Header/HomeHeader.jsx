@@ -14,7 +14,7 @@ import Loading from '../../Loading/Loading.jsx';
 import { LiaEditSolid } from 'react-icons/lia';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../../Firebase/firebase.js';
-import { toast } from 'react-toastify';
+import { Bounce, Slide, toast, ToastContainer } from 'react-toastify';
 
 const HomeHeader = () => {
   // const [editPost, setEditpath] = useState(true);
@@ -44,7 +44,15 @@ const HomeHeader = () => {
       setLoading(false);
     }
   };
-
+  const showtoast =() => {
+    toast.info("Hang in there! We're perfecting this functionality for you! 😇", {
+      position:'top-center',
+      autoClose: 5000, 
+      transition: Slide, 
+      closeOnClick: true,
+      theme:"light",
+    })
+  }
   return (
     <header className=' border-b border-gray-200'>
       {userLoading && <Loading />}
@@ -101,9 +109,12 @@ const HomeHeader = () => {
           }
 
 
+          <div>
           <span className=' text-3xl text-gray-500 cursor-pointer'>
-            <IoNotificationsOutline />
+            <IoNotificationsOutline onClick={showtoast}/>
           </span>
+          <ToastContainer limit={5}/>
+          </div>
           <div className=' flex items-center relative'>
             <img
               onClick={() => setModel(true)}
