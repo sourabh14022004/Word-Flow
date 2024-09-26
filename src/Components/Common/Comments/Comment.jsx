@@ -6,7 +6,7 @@ import { BiDotsHorizontalRounded } from "react-icons/bi";
 import DropDown from '../../../Utils/DropDown';
 import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../../Firebase/firebase';
-import { toast } from 'react-toastify';
+import { Slide, toast } from 'react-toastify';
 
 const Comment = ( { item: comment, postId}) => {
     const {allUsers, currentUser } = Blog();
@@ -24,9 +24,17 @@ const Comment = ( { item: comment, postId}) => {
             const ref = doc(db, "posts", postId, "comments", comment?.id)
             await deleteDoc(ref) 
             setDrop(false);
-            toast.success("Comment has been removed")
+            toast.success("Comment has been removed", {
+                position: 'top-center',
+                transition: Slide,
+                closeOnClick: true,
+            })
         } catch (error) {
-            toast.error(error.messaeg)
+            toast.error(error.messaeg,{
+                position:"top-center",
+                transition:Slide,
+                closeOnClick:true,
+            })
         }
     }
     const editCommentText = () => {
@@ -47,9 +55,17 @@ const Comment = ( { item: comment, postId}) => {
           setEditComment("");
           setIsEdit(false);
           setDrop(false);
-          toast.success("Comment has been updated");
+          toast.success("Comment has been updated", {
+            position: "top-center",
+            closeOnClick: true,
+            transition: Slide,
+          });
         } catch (error) {
-          toast.success(error.message);
+          toast.error(error.message, {
+            position:"top-center",
+            transition:Slide,
+            closeOnClick:true,
+          });
         } finally {
           setLoading(false);
         }
@@ -126,12 +142,12 @@ const Comment = ( { item: comment, postId}) => {
 
 export default Comment;
 
-const Button = ({ click, title }) => {
-    return (
-      <button
-        onClick={click}
-        className="p-2 hover:bg-gray-200 text-black/80 w-full text-sm text-left">
-        {title}
-      </button>
-    );
-  };
+// const Button = ({ click, title }) => {
+//     return (
+//       <button
+//         onClick={click}
+//         className="p-2 hover:bg-gray-200 text-black/80 w-full text-sm text-left">
+//         {title}
+//       </button>
+//     );
+//   };
