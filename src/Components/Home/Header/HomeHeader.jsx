@@ -124,7 +124,7 @@ const HomeHeader = () => {
             </img>
             <span
               className=' text-gray-500 cursor-pointer'>
-              <MdKeyboardArrowDown />
+              <MdKeyboardArrowDown onClick={() => setModel(true)} />
             </span>
             <Model model={model} setModel={setModel}>
               <div className={`${model ? "visible opacity-100%" : "invisible opacity-0"} transition-all duration-200 `}>
