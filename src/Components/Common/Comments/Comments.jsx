@@ -5,7 +5,7 @@ import { Blog } from '../../../Context/Context';
 import profile from '../../../assets/profile.jpg'
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../../Firebase/firebase';
-import { toast } from 'react-toastify';
+import { Bounce, Slide, toast } from 'react-toastify';
 import useSingleFetch from '../../hooks/useSingleFetch';
 import Loading from '../../Loading/Loading';
 import Comment from './Comment';
@@ -13,28 +13,38 @@ import Comment from './Comment';
 const Comments = ({ postId }) => {
     const { currentUser, allUsers, showComment, setShowComment, setCommentLength }  = Blog();
     const [comment, setComment] = useState("");
-    const [commentData, setCommentData] = useState([]);
-
-
     const getUserData = allUsers.find((user) => user.id === currentUser?.uid); 
     const {data, loading} = useSingleFetch("posts", postId, "comments");
  
     const writeComment = async () => {
         try {
           if (comment === "") {
-            toast.error("The input must be filled.");
+            toast.error("The input must be filled.", {
+              position: "top-center",
+              transition: Bounce,
+              closeOnClick: true,
+            });
           } else {
-            const commentRef = collection(db, "posts", postId, "comments");
+            
+          const commentRef = collection(db, "posts", postId, "comments");
           await addDoc(commentRef, {
             commentText: comment,
             created: Date.now(),
             userId: currentUser?.uid,
           });
-          toast.success("Comment has been added");
+          toast.success("Comment has been added",{
+            position:"top-center",
+            transition: Slide,
+            closeOnClick: true,
+          });
           setComment("");
           }
         } catch (error) {
-          toast.error(error.message);
+          toast.error(error.message, {
+            position: "top-center",
+            transition: Bounce,
+            closeOnClick: true,
+          });
         }
       };
 
@@ -75,28 +85,27 @@ const Comments = ({ postId }) => {
                 <div className="flex items-center justify-end gap-4 mt-[1rem]">
                     <button 
                         onClick={() => setComment("")}
-                        className="text-sm">Cancel</button>
+                        className="text-sm hover:text-red-400 ">Cancel</button>
                     <button 
                         onClick={writeComment}
                         className="btn !text-xs !bg-green-700 !text-white !rounded-full">Response</button>
                 </div>
         </div>
     )}
-        {
-            data && data?.length === 0 ? (<p>This post has no comments</p> 
+        {data && data?.length === 0 ? (
+          <p>This post has no comments</p> 
+        ) : (
+            <div className="border-t py-4 mt-8 flex flex-col gap-8">
+                {data &&
+                data.map((item, i) =>
+                  loading ? (
+                  <Loading />
             ) : (
-                <div className="border-t py-4 mt-8 flex flex-col gap-8">
-                    {data &&
-                    data.map((item, i) =>
-                        loading ? (
-                        <Loading />
-                        ) : (
-                        <Comment item={item} postId={postId}  key={i} />
-                        )
-                    )}
-                </div>
-
-            )
+                  <Comment item={item} postId={postId}  key={i} />
+              )
+                )}
+            </div>
+          )
         }
       </section>
     </Model>
