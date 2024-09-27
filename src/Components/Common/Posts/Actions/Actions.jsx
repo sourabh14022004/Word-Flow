@@ -3,7 +3,7 @@ import { SlOptions } from "react-icons/sl";
 import DropDown from '../../../../Utils/DropDown';
 import { Blog } from '../../../../Context/Context';
 import { deleteDoc, doc } from 'firebase/firestore';
-import { toast } from 'react-toastify';
+import { Bounce, Slide, toast } from 'react-toastify';
 import { db } from '../../../../Firebase/firebase';
 import { useNavigate } from 'react-router-dom';
 
@@ -31,11 +31,19 @@ const Actions = ({ postId, title, desc }) => {
           await deleteDoc(commentRef);
           await deleteDoc(savedPostRef);
     
-          toast.success("post has been removed");
+          toast.success("post has been removed",{
+            position: "top-center",
+            transition: Slide,
+            closeOnClick: true,
+          });
           setShowDrop(false);
           navigate("/");
         } catch (error) {
-          toast.success(error.message);
+          toast.success(error.message,{
+            transition: Bounce,
+            position: "top-center",
+            closeOnClick: true,
+          });
         }
       };
       const navigate = useNavigate(null);
