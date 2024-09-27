@@ -11,6 +11,7 @@ import Write from './Components/Home/Write/Write.jsx';
 import SinglePost from './Components/Common/Posts/SinglePost.jsx';
 import EditPost from './Components/Common/Posts/EditPost.jsx';
 import UnderConstractionPage from './Constractions/UnderConstractionPage.jsx';
+import FilterPost from './Components/Demo/FilterPost.jsx';
 
 
 
@@ -28,6 +29,7 @@ function App() {
             <Route path="/write" element = {<Write/>}></Route>
             <Route path='/post/:postId' element = {<SinglePost/> }></Route>
             <Route path='/editPost/:postId' element = {<EditPost/> }></Route>
+            <Route path='/filter/:tag' element = {<FilterPost/> }></Route>
             
 
 
