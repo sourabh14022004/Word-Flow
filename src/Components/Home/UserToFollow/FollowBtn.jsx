@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Blog } from '../../../Context/Context';
 import { db } from '../../../Firebase/firebase';
 import { deleteDoc, doc, setDoc } from 'firebase/firestore';
-import { toast } from 'react-toastify';
+import { Bounce, Slide, toast } from 'react-toastify';
 import useSingleFetch from '../../hooks/useSingleFetch';
 import { useLocation } from 'react-router-dom';
 
@@ -27,7 +27,11 @@ const FollowBtn = ({ userId, username }) => {
                 if (isFollowed) {
                     await deleteDoc(followRef);
                     await deleteDoc(followersRef);
-                    toast.success(`You have Unfollowed ${username}`)
+                    toast.success(`You have Unfollowed ${username}` ,{
+                        position: "top-center",
+                        transition: Slide,
+                        closeOnClick: true,
+                    })
                 } else {
                     await setDoc(followRef, {
                         userId : userId,
@@ -35,12 +39,20 @@ const FollowBtn = ({ userId, username }) => {
                     await setDoc(followersRef, {
                         userId : userId,
                     });
-                    toast.success(`You have Followed ${username}`)
+                    toast.success(`You have Followed ${username}`,{
+                        position: "top-center",
+                        transition: Slide,
+                        closeOnClick: true,
+                    })
                 }
             }
 
         } catch (error) {
-            toast.error(error.message)
+            toast.error(error.message, {
+                position: "top-center",
+                transition: Bounce,
+                closeOnClick: true,
+            })
         }
      };
 
