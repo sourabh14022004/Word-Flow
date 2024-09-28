@@ -10,7 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { secretEmail } from '../../../Utils/helper.js';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../../Firebase/firebase.js';
-import { Bounce, toast } from 'react-toastify';
+import { Bounce, Slide, toast } from 'react-toastify';
 
 const UserModel = ({ setModel }) => {
     const { currentUser } = Blog();
