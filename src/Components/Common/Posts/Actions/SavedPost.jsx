@@ -29,7 +29,7 @@ const SavedPost = ({ post }) => {
                     await deleteDoc(saveRef)
                     toast.success("Post has been unsaved", {
                         position: "top-center",
-                        transition: Bounce,
+                        transition: Slide,
                         closeOnClick: true,
                         })
                     } else {
@@ -38,7 +38,7 @@ const SavedPost = ({ post }) => {
                     });
                     toast.success("Post has been Saved",{
                         position: "top-center",
-                        transition: Bounce,
+                        transition: Slide,
                         closeOnClick: true,
                     });
                 } 
@@ -49,7 +49,7 @@ const SavedPost = ({ post }) => {
         } catch (error){
             toast.error(error.message, {
                 position: "top-center",
-                transition: Slide,
+                transition: Bounce,
                 closeOnClick: true,
             })
         }
