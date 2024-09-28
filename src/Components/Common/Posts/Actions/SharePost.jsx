@@ -15,7 +15,7 @@ import {
     TwitterShareButton,
     WhatsappShareButton,
   } from "react-share";
-import { toast } from 'react-toastify';
+import { Bounce, Slide, toast } from 'react-toastify';
 
 const SharePost = () => {
     const [showDrop, setShowDrop] = useState(false);
@@ -23,10 +23,18 @@ const SharePost = () => {
     const copyLink = async () => {
       try {
         await navigator.clipboard.writeText(path);
-        toast.success("Link has been copied")
+        toast.success("Link has been copied",{
+          position:"top-center",
+          transition: Slide,
+          closeOnClick: true,
+        })
         setShowDrop(false);
       } catch (error) {
-        toast.error(error.message);
+        toast.error(error.message, {
+          position: 'top-center',
+          transition: Bounce,
+          closeOnClick: true,
+        });
         setShowDrop(false);
       }
     }
