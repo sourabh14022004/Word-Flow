@@ -32,8 +32,8 @@ const Comment = ( { item: comment, postId}) => {
         } catch (error) {
             toast.error(error.messaeg,{
                 position:"top-center",
-                transition:Bounce,
-                closeOnClick:true,
+                transition: Bounce,
+                closeOnClick: true,
             })
         }
     }
@@ -63,8 +63,8 @@ const Comment = ( { item: comment, postId}) => {
         } catch (error) {
           toast.error(error.message, {
             position:"top-center",
-            transition:Bounce,
-            closeOnClick:true,
+            transition: Bounce,
+            closeOnClick: true,
           });
         } finally {
           setLoading(false);
@@ -130,7 +130,7 @@ const Comment = ( { item: comment, postId}) => {
                         onClick={handleEdit}
                         className={`btn !text-white !bg-green-700 !rounded-full !text-xs ${ loading ? ' bg-cyan-500':''}`}>
                             {loading ? "Updating..." : "Update" }
-                        </button>
+                    </button>
 
                 </div>
 
