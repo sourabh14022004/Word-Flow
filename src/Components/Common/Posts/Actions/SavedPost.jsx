@@ -3,7 +3,7 @@ import { FaDownload } from "react-icons/fa6";
 import { Blog } from '../../../../Context/Context';
 import { deleteDoc, doc, setDoc } from 'firebase/firestore';
 import { db } from '../../../../Firebase/firebase';
-import { Slide, toast } from 'react-toastify';
+import { Bounce, Slide, toast } from 'react-toastify';
 import useSingleFetch from '../../../hooks/useSingleFetch';
 
 const SavedPost = ({ post }) => {
