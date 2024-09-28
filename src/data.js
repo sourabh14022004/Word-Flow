@@ -1,8 +1,7 @@
 export const nav = [
     {
       title: "Our Story",
-      // onClick={() => setModel(true)}
-      path: "/underCons",
+      path: "/about",
     },
     {
       title: "Membership",
