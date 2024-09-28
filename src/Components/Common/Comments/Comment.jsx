@@ -30,7 +30,7 @@ const Comment = ( { item: comment, postId}) => {
                 closeOnClick: true,
             })
         } catch (error) {
-            toast.error(error.messaeg,{
+            (error.messaeg,{
                 position:"top-center",
                 transition: Bounce,
                 closeOnClick: true,
