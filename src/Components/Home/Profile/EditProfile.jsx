@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Model from '../../../Utils/Model';
 import { IoExitOutline } from "react-icons/io5"
-import { toast } from 'react-toastify';
+import { Bounce, Slide, toast } from 'react-toastify';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { db, storage } from '../../../Firebase/firebase';
 import { doc, updateDoc } from 'firebase/firestore';
@@ -35,7 +35,11 @@ const EditProfile = ({editModal, setEditModal, getUserData}) => {
 // save form 
   const saveForm = async () => {
     if (form["username"] === "" && form["bio"] === "") {
-      toast.error("All inputs are required!!!");
+      toast.error("All inputs are required!!!", {
+        position: "top-center",
+        transition: Bounce,
+        closeOnClick: true,
+      });
       return;
     }
     setLoading(true);
@@ -56,9 +60,17 @@ const EditProfile = ({editModal, setEditModal, getUserData}) => {
     });
     setLoading(false);
     setEditModal(false);
-    toast.success("Profile has been updated");
+    toast.success("Profile has been updated",{
+      position: "top-center",
+        transition: Slide,
+        closeOnClick: true,
+    });
   } catch (error) {
-    toast.error(error.message);
+    toast.error(error.message, {
+        position: "top-center",
+        transition: Bounce,
+        closeOnClick: true,
+    });
   }
 };
 
