@@ -40,7 +40,7 @@ const Actions = ({ postId, title, desc }) => {
           navigate("/");
         } catch (error) {
           toast.success(error.message,{
-            transition: Bounce,
+            transition: Slide,
             position: "top-center",
             closeOnClick: true,
           });
