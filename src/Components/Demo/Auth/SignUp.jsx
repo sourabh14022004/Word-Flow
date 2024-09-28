@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import Input from '../../../Utils/Input';
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
-import { toast } from 'react-toastify';
+import { Bounce, Slide, toast } from 'react-toastify';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../../../Firebase/firebase.js';
 import { useNavigate } from 'react-router-dom';
@@ -28,16 +28,32 @@ const SignUp = ({ setSignReq, setModel }) => {
         e.preventDefault();
 
         if (form[("username","email","password","Enter your password again")] === "" ) {
-            toast.error("All fields are required")
+            toast.error("All fields are required", {
+                transition: Bounce,
+                position: "top-center",
+                closeOnClick: true,
+            })
         } else if (!emailRegex.test(form["email"])) {
             // Check if email format is valid
-            toast.error("Please enter a valid email address");
+            toast.error("Please enter a valid email address",{
+                transition: Bounce,
+                position: "top-center",
+                closeOnClick: true,
+            });
             return;
         } else if (form["password"] !== form["Enter your password again"]) {
-            toast.error("Your password are not matching!!");
+            toast.error("Your password are not matching!!", {
+                transition: Bounce,
+                position: "top-center",
+                closeOnClick: true,
+            });
             return;
         } else if (form["Enter your password again"].length && form["password"].length < 6) {
-            toast.error("Password must be at least 6 digits.")
+            toast.error("Password must be at least 6 digits.",{
+                transition: Bounce,
+                position: "top-center",
+                closeOnClick: true,
+            })
             return;
         } else {
             setLoading(true);
@@ -61,7 +77,11 @@ const SignUp = ({ setSignReq, setModel }) => {
 
                 });
                 navigate("/");
-                toast.success("Users has been Signed in Successfully.");
+                toast.success("Users has been Signed in Successfully.",{
+                    transition: Slide,
+                    position: "top-center",
+                    closeOnClick: true,
+                });
                 setModel(false);
                 setLoading(false);
             }
