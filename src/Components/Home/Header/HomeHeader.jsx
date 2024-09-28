@@ -38,7 +38,11 @@ const HomeHeader = () => {
         desc : description,
       });
       navigate(`/post/${postId}`);
-      toast.success("Post has been updated");
+      toast.success("Post has been updated",{
+        position: "top-center",
+        transition: Slide,
+        closeOnClick: true, 
+      });
     } catch (error) {
     } finally {
       setLoading(false);
