@@ -7,7 +7,7 @@ import TagsInput from 'react-tagsinput';
 import { addDoc, collection } from 'firebase/firestore';
 import { db, storage } from '../../../Firebase/firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import { toast } from 'react-toastify';
+import { Bounce, Slide, toast } from 'react-toastify';
 
 const Preview = ({setPublish, description, title}) => {
     const imageRef = useRef(null);
@@ -41,12 +41,20 @@ const Preview = ({setPublish, description, title}) => {
         setLoading(true);
         try {
           if (preview.title === "" || desc === "" || tags.length === 0) {
-            toast.error("All fields are required!!!");
+            toast.error("All fields are required!!!", {
+              position: "top-center",
+              transition: Bounce,
+              closeOnClick: true,
+            });
             return;
           }
     
           if (preview.title.length < 15) {
-            toast.error("Title must be at least 15 letters");
+            toast.error("Title must be at least 15 letters" ,{
+              position: "top-center",
+              transition: Bounce,
+              closeOnClick: true,
+            });
             return;
           }
     
@@ -69,7 +77,11 @@ const Preview = ({setPublish, description, title}) => {
             created: Date.now(),
             pageViews: 0,
           });
-          toast.success("Post has been added");
+          toast.success("Post has been added", {
+            position: "top-center",
+            transition: Slide,
+            closeOnClick: true,
+          });
           navigate("/");
           setPublish(false);
           setPreview({
@@ -77,7 +89,11 @@ const Preview = ({setPublish, description, title}) => {
             photo: "",
           });
         } catch (error) {
-          toast.error(error.message);
+          toast.error(error.message,{
+            position: "top-center",
+            transition: Bounce,
+            closeOnClick: true,
+          });
         } finally {
           setLoading(false);
         }
