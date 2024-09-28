@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Input from '../../../Utils/Input';
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
-import { toast } from 'react-toastify';
+import { Bounce, Slide, toast } from 'react-toastify';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../Firebase/firebase';
 import { useNavigate } from 'react-router-dom';
@@ -20,17 +20,29 @@ const SignIn = ({ setSignReq }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (form["email", "password"] == "") {
-            toast.error("All feilds are required.")
+            toast.error("All feilds are required.",{
+                position: "top-center",
+                transition: Bounce,
+                closeOnClick: true,
+            })
         }
         try {
             setLoading(true);
             await signInWithEmailAndPassword(auth, form.email, form.password);
             navigate("/")
             setLoading(false);
-            toast.success("You have Successfully logged in")
+            toast.success("You have Successfully logged in",{
+                position: "top-center",
+                transition: Slide,
+                closeOnClick: true,
+            })
 
         }catch (error){
-            toast.error(error.message);
+            toast.error(error.message, {
+                position: "top-center",
+                transition: Bounce,
+                closeOnClick: true,
+            });
             setLoading(false);
         }
     }
