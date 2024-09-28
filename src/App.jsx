@@ -12,6 +12,7 @@ import SinglePost from './Components/Common/Posts/SinglePost.jsx';
 import EditPost from './Components/Common/Posts/EditPost.jsx';
 import UnderConstractionPage from './Constractions/UnderConstractionPage.jsx';
 import FilterPost from './Components/Demo/FilterPost.jsx';
+import OurStory from './Components/Ourstory/OurStory.jsx';
 
 
 
@@ -30,6 +31,7 @@ function App() {
             <Route path='/post/:postId' element = {<SinglePost/> }></Route>
             <Route path='/editPost/:postId' element = {<EditPost/> }></Route>
             <Route path='/filter/:tag' element = {<FilterPost/> }></Route>
+            <Route path='/about' element = {<OurStory/>}></Route>
             
 
 

@@ -61,3 +61,53 @@
   font-size: 1.2rem !important;
   padding: 0 !important;
 }
+
+.ek {
+  color: #FFFFFF;
+}
+.qh {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+.rd {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.rc {
+  letter-spacing: -0.009em;
+}
+.rb {
+  line-height: 40px;
+}
+.ra {
+  font-size: 28px;
+}
+.qz {
+  font-weight: 300;
+}
+.cq {
+  font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.nc {
+  font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+.qy {
+  letter-spacing: -0.003em;
+}
+
+.qx {
+  line-height: 32px;
+}
+.qw {
+  font-size: 21px;
+}
+.nc {
+  font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+.fc {
+  color: rgba(255, 255, 255, 0.95);
+}
+.b {
+  font-weight: 400;
+}
