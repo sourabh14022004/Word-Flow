@@ -46,9 +46,9 @@ const OurStory = () => {
         <p className='nc b qw qx qy fc'>Instead of selling ads or selling your data, we’re supported by a growing community of over a million
             <a className=' underline ml-1 mr-1' href="">Word flow members</a>
             who believe in our mission. If you’re new here,
-            <span onClick={() => setAuthModel(true)} className=' underline ml-1 mr-1'>start reading</span>
+            <span onClick={() => setAuthModel(true)} className=' underline ml-1 mr-1 cursor-pointer'>start reading</span>
             . Dive deeper into whatever matters to you. Find a post that helps you learn something new, or reconsider something familiar—and then
-            <a href="">write your story</a>
+            <a href="" className=' ml-1 mr-1 cursor-pointer underline'>write your story</a>
             .
         </p>
         </div>
